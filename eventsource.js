@@ -2,13 +2,24 @@
  * eventsource.js
  * Available under MIT License (MIT)
  * https://github.com/Yaffle/EventSource/
+ *
+ * Forked and modified by Matthias Nehlsen under:
+ * https://github.com/matthiasn/EventSource
+ *
+ * Modifications:
+ * 1) only loads when a global EventSource object does not exist.
+ * 2) skip check for ContentType as that check was not compatible with Play Framework's EventSource
+ *    implementation.
  */
 
 /*jslint indent: 2, vars: true, plusplus: true */
 /*global setTimeout, clearTimeout */
 
+/** modified by Matthias Nehlsen on June 9th, 2014 to add check without changing the indentation of the rest of the
+ *  file so that changes can more easily be tracked. */
 (function (global) {
-  "use strict";
+"use strict";
+if (!global.EventSource) { (function (global) {
 
   function Map() {
     this.data = {};
@@ -211,7 +222,9 @@
           status = 200;
           contentType = xhr.contentType;
         }
-        if (status === 200 && contentTypeRegExp.test(contentType)) {
+        /** modified by Matthias Nehlsen on June 9th, 2014 to remove incompatible ContentType type check. */
+        //if (status === 200 && contentTypeRegExp.test(contentType)) {
+        if (status === 200) {
           currentState = OPEN;
           wasActivity = true;
           retry = initialRetry;
@@ -463,8 +476,9 @@
     // https://code.google.com/p/chromium/issues/detail?id=260144
     // https://code.google.com/p/chromium/issues/detail?id=225654
     // ...
-    global.NativeEventSource = global.EventSource;
+
+    /** modified by Matthias Nehlsen on June 9th, 2014 */
+    console.log("Using EventSource PolyFill");
     global.EventSource = EventSource;
   }
-
-}(this));
+}(global))}}(this));

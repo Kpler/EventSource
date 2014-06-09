@@ -1,6 +1,15 @@
 EventSource polyfill - http://www.w3.org/TR/eventsource/
 ========================================================
 
+Fork modified for making BirdWatch and sse-chat work with Internet Explorer 10 and above
+---------------------------------------------------------------------------
+This fix aims at making the **[Birdwatch](https://github.com/matthiasn/BirdWatch)** and **[sse-chat](https://github.com/matthiasn/sse-chat)** applications work with Internet Explorer
+10 and above. Both these applications are build with Play Framework on the server side.
+
+Modifications:
+ 1) only loads when a global EventSource object does not exist.
+ 2) skip check for ContentType as that check was not compatible with Play Framework's EventSource implementation.
+
 Browser support:
 ----------------
 
