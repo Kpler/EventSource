@@ -19,7 +19,7 @@
  *  file so that changes can more easily be tracked. */
 (function (global) {
 "use strict";
-if (!global.EventSource) { (function (global) {
+//if (!global.EventSource) { (function (global) {
 
   function Map() {
     this.data = {};
@@ -492,4 +492,5 @@ if (!global.EventSource) { (function (global) {
     console.log("Using EventSource PolyFill");
     global.EventSource = EventSource;
   }
-}(global))}}(this));
+//}(global))}
+}(this));
