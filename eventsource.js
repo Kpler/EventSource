@@ -1,4 +1,4 @@
-/**
+/** @license
  * eventsource.js
  * Available under MIT License (MIT)
  * https://github.com/Yaffle/EventSource/
@@ -279,7 +279,7 @@ if (!global.EventSource) { (function (global) {
               } else if (field === "retry") {
                 initialRetry = getDuration(value, initialRetry);
                 retry = initialRetry;
-              } else if (field === "heartbeatTimeout") {//!
+              } else if (field === "heartbeatTimeout") {
                 heartbeatTimeout = getDuration(value, heartbeatTimeout);
                 if (timeout !== 0) {
                   clearTimeout(timeout);
